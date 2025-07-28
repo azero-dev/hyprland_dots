@@ -1,0 +1,235 @@
+{
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+  "layer": "bottom",
+  "position": "top",
+  "output": [
+    "eDP-1",
+    "VGA"
+  ],
+  "height": 10,
+  "margin-left": 0,
+  "margin-bottom": 0,
+  "margin-right": 0,
+  "margin-top": 0,
+  "spacing": 12,
+  "modules-left": [
+    "hyprland/workspaces",
+    //"idle_inhibitor",
+    //"mpd",
+    "custom/screenshot_t",
+    "tray"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    // "custom/bluetooth_menu",
+    "bluetooth",
+    "network",
+    "backlight",
+    "custom/secmonitor",
+    "cpu",
+    // "custom/storage",
+    "memory",
+    "battery",
+    "temperature",
+    "power-profiles-daemon",
+    // "custom/power",
+    "custom/powermenu"
+  ],
+  // -------------------------------------------------------------------------
+  // Modules
+  // -------------------------------------------------------------------------
+  "custom/screenshot_t": {
+    "format": " ",
+    "on-click": "~/.config/hypr/scripts/screenshot_full",
+    "on-click-right": "~/.config/hypr/scripts/screenshot_area"
+  },
+  "temperature": {
+    // "thermal-zone": 1,
+    "interval": 4,
+    //"hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": " {temperatureC}°C",
+    "format-critical": "  {temperatureC}°C",
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ],
+    "max-length": 7,
+    "min-length": 7,
+    "on-click": "xsensors"
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {used:0.2f}",
+    "on-click": "alacritty -e btop"
+  },
+  "battery": {
+    "interval": 60,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "max-length": 2,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "network": {
+    //"format-wifi": " {essid} ({signalStrength}%)",
+    "format-wifi": " ",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format": "",
+    "format-disconnected": "",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click": "wl-copy $(ip address show up scope global | grep inet | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c5-)",
+    "on-click-right": "wl-copy $(ip address show up scope global | grep inet6 | head -n1 | cut -d/ -f 1 | tr -d [:space:] | cut -c6-)",
+    "tooltip-format": " {bandwidthUpBits}  {bandwidthDownBits}\n{ifname}\n{ipaddr}/{cidr}\n",
+    "tooltip-format-wifi": " {essid} {frequency}MHz\nStrength: {signaldBm}dBm ({signalStrength}%)\nIP: {ipaddr}/{cidr}\n {bandwidthUpBits}  {bandwidthDownBits}",
+    "interval": 10
+  },
+  "custom/storage": {
+    "format": " {}",
+    "format-alt": "{percentage}% ",
+    "format-alt-click": "click-right",
+    "return-type": "json",
+    "interval": 60,
+    "exec": "~/.config/waybar/modules/storage.sh"
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-alt": "{percent}% {icon}",
+    "format-alt-click": "click-right",
+    "format-icons": [
+      "",
+      ""
+    ],
+    "on-scroll-down": "brightnessctl s 5%-",
+    "on-scroll-up": "brightnessctl s +5%"
+  },
+  "custom/power": {
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "wlogout"
+  },
+  "clock": {
+    "format": " {:%H:%M - %e %b}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "today-format": "<b>{}</b>"
+  },
+  "cpu": {
+    "interval": 1,
+    //"format": " {}%", // Icon: microchip
+    "format": " {max_frequency}GHz",
+    "max-length": 10,
+    "min-length": 10
+  },
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "七",
+      "2": "九",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+    "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+    "sort-by-number": true,
+    "active-only": false
+  },
+  "hyprland/window": {
+    "max-length": 100,
+    "separate-outputs": true
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}% ",
+    "format-bluetooth": "{icon} {volume}% ",
+    "format-muted": "",
+    "format-icons": {
+      "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+      "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "phone-muted": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        ""
+      ]
+    },
+    "scroll-step": 2,
+    "on-click": "pavucontrol",
+    "ignored-sinks": [
+      "Easy Effects Sink"
+    ]
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 20
+  },
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_battery_percentage}%",
+    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "~/.config/waybar/modules/bt_menu.sh"
+  },
+  "custom/powermenu": {
+    "format": "",
+    "on-click": "rofi -show p -modi p:rofi-power-menu -lines 6 -theme-str 'window { width: 400px; } listview { lines: 6; dynamic: true; }'",
+    "max-length": 2,
+    "min-length": 2
+  },
+  "custom/secmonitor": {
+    "format": "{}",
+    "exec": "~/.config/waybar/modules/secmonitor.sh",
+    "on-scroll-up": "ddcutil setvcp 10 + 10 && pkill -RTMIN+10 waybar",
+    "on-scroll-down": "ddcutil setvcp 10 - 10 && pkill -RTMIN+10 waybar",
+    "on-click": "ddcutil setvcp D6 01 && pkill -RTMIN+10 waybar",
+    "on-click-right": "ddcutil setvcp D6 04 && pkill -RTMIN+10 waybar",
+    "signal": 10,
+    "max-length": 7,
+    "min-length": 7
+  }
+}
