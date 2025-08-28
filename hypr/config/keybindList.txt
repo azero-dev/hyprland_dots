@@ -6,9 +6,11 @@ main CTRL G - Gedit
 main CTRL Q - Qwen
 main CTRL S - Spotify
 main CTRL C - ChatGPT
+main ALT COMMA - Turn on second monitor
+main ALT PERIOD - Turn off second monitor
 
 
-main CTRL U - Submap apps
+main CTRL U - Submap apps:
 T     - Twitch
 L     - Lock screen
 SPACE - pause track
@@ -28,6 +30,9 @@ main F - full screen
 main M - group windows
 main N - split direction
 main O - reload waybar
+main B - bluetooth
+main S - power menu
+main X - nvim
 main TAB- change grouped window
 
 
@@ -37,10 +42,10 @@ main 1234567890 - switch workspace
 main ctrl 1234567890 - move window switch workspace
 main SHIFT 1234567890 - move window silently
 main COMMA/PERIOD/SLASH - scroll workspace
-main MINUS - special workspace
 main EQUAL - special workspace
+main MINUS - send to special workspace
 main F1 - special workspace
-main SHIFT F1 - special workspace
+main SHIFT F1 - send to special workspace
 
 
 FLAGS:
