@@ -2,12 +2,14 @@
 
 These are my dots for Hyprland and Wayland. Uploaded here to keep them archived, and in case anyone else finds them useful.
 
-There is a custom module for managing Bluetooth, which uses a script created by **Nick Clyde (clydedroid)**.
+There is a custom module for managing Bluetooth, which uses [rofi-bluetooth](https://github.com/nickclyde/rofi-bluetooth/blob/master/rofi-bluetooth) created by **Nick Clyde (clydedroid)**.
 
-This is designed for MY desktop, so if you use it, you will need to adapt it. For example, I use MControlCenter for MSI, but you may not need it.
+This is designed for MY desktop, so if you use it, you will need to adapt it. For example, I use [MControlCenter](https://github.com/dmitry-s93/MControlCenter) for MSI, but you may not need it.
+
+I usually prefer to use webapps rather than install them, so certain commands open these web apps. To manage webapps, I use Linux Mint's [Webapp Manager](https://github.com/linuxmint/webapp-manager).
 
 ## Secondary monitor management
-The secondary monitor module may not work with your device. Management is handled by **ddcutils**. If you need to use another command, replace it in:
+The secondary monitor module may not work with your device. Management is handled by [**ddcutils**](https://www.ddcutil.com/). If you need to use another command, replace it in:
 - hypr/config/keybinds.conf: To control brightness with keybinds.
 - waybar/modules/secmonitor.sh: to display the curren brightness percentage.
 
